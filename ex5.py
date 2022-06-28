@@ -14,14 +14,13 @@ def names_of_registered_students(input_json_path, course_name):
 
 
 def enrollment_numbers(input_json_path, output_file_path):
-    """
-    This function writes all the course names and the number of enrolled
-    student in ascending order to the output file in the given path.
-
-    :param input_json_path: Path of the students database json file.
-    :param output_file_path: Path of the output text file.
-    """
-    pass
+    with open(input_json_path, 'r') as f:
+        tempDict = json.load(f)
+    coursesList = [course for course in tempDict.value]
+    coursesDict = {}
+    for course in coursesList:
+        if course not in coursesDict.keys():
+            coursesDict[course]= names_of_registered_students(input_json_path, course).len
 
 
 
