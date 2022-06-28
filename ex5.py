@@ -2,12 +2,10 @@ import json
 import os
 
 
-
 def names_of_registered_students(input_json_path, course_name):
     with open (input_json_path, 'r') as f:
         tempDict = json.load(f)
     return [name for name in tempDict["student_name"] if course_name in tempDict["registered_courses"]]
-
 
 
 def enrollment_numbers(input_json_path, output_file_path):
@@ -18,7 +16,7 @@ def enrollment_numbers(input_json_path, output_file_path):
     coursesDict = {}
     for course in coursesList:
         if course not in coursesDict.keys():
-            coursesDict[course]= names_of_registered_students(input_json_path, course).len
+            coursesDict[course]= len(names_of_registered_students(input_json_path, course))
     with open(output_file_path, 'w') as fileOut:
         json.dump(coursesDict, fileOut, indent=4)
 
