@@ -14,14 +14,15 @@ def names_of_registered_students(input_json_path, course_name):
 
 
 def enrollment_numbers(input_json_path, output_file_path):
-    with open(input_json_path, 'r') as f:
-        tempDict = json.load(f)
+    with open(input_json_path, 'r') as fileIn:
+        tempDict = json.load(fileIn)
     coursesList = [course for course in tempDict.value]
     coursesDict = {}
     for course in coursesList:
         if course not in coursesDict.keys():
             coursesDict[course]= names_of_registered_students(input_json_path, course).len
-
+    with open(output_file_path, 'w') as fileOut:
+        json.dump(coursesDict, fileOut, indent=4)
 
 
 def courses_for_lecturers(json_directory_path, output_json_path):
