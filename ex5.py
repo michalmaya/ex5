@@ -13,7 +13,7 @@ def names_of_registered_students(input_json_path, course_name):
 def enrollment_numbers(input_json_path, output_file_path):
     with open(input_json_path, 'r') as fileIn:
         tempDict = json.load(fileIn)
-    coursesList = [course for course in tempDict.values()]
+    coursesList = [course.get("registered_courses") for course in tempDict.values()]
     coursesList.sort()
     coursesDict = {}
     for course in coursesList:
