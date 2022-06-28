@@ -16,15 +16,12 @@ def enrollment_numbers(input_json_path, output_file_path):
     coursesList = [course.get("registered_courses") for course in tempDict.values()]
     coursesList.sort()
     coursesDict = {}
+    for courses in coursesList:
+        for course in courses:
+            if not course in coursesDict:
+                coursesDict[course]= len(names_of_registered_students(input_json_path, course))
     with open(output_file_path, 'w') as fileOut:
-        for courses in coursesList:
-            for course in courses:
-                if not course in coursesDict:
-                    coursesDict[course]= len(names_of_registered_students(input_json_path, course))
-                    s= course+' '+str(len(names_of_registered_students(input_json_path, course)))+"/n"
-                    fileOut.write(s)
-        #with open(output_file_path, 'w') as fileOut:
-        #json.dump(coursesDict, fileOut)
+        json.dump(coursesDict, fileOut)
 
 
 
