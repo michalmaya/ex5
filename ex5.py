@@ -43,5 +43,9 @@ def courses_for_lecturers(json_directory_path, output_json_path):
     with open(output_json_path, 'w') as f:
         f.write('{\n')
         for key, value in finalDict.items():
-            f.write('    \"{0}\": {1},\n'.format(key, value))
+            if not key == list(finalDict.keys())[-1]:
+                jsonStr = ("    " + json.dumps(key) + ": " + json.dumps(value)+",\n")
+            else:
+                jsonStr = ("    " + json.dumps(key) + ": " + json.dumps(value)+"\n")
+            f.write(jsonStr)
         f.write('}')
