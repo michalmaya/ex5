@@ -6,15 +6,14 @@ from collections import defaultdict
 def names_of_registered_students(input_json_path, course_name):
     with open(input_json_path, 'r') as f:
         tempDict = json.load(f)
-    return [name for name in tempDict["student_name"] if
-            course_name in tempDict["registered_courses"]]
-
+    return [student.get("student_name") for student in tempDict.values() if
+            course_name in student.get("registered_courses")]
 
 
 def enrollment_numbers(input_json_path, output_file_path):
     with open(input_json_path, 'r') as fileIn:
         tempDict = json.load(fileIn)
-    coursesList = [course for course in tempDict.value]
+    coursesList = [course for course in tempDict.values()]
     coursesList.sort()
     coursesDict = {}
     for course in coursesList:
