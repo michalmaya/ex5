@@ -17,7 +17,7 @@ def enrollment_numbers(input_json_path, output_file_path):
     coursesList.sort()
     coursesDict = {}
     for course in coursesList:
-        if not course in coursesDict.keys():
+        if not course in coursesDict:
             coursesDict[course]= len(names_of_registered_students(input_json_path, course))
     with open(output_file_path, 'w') as fileOut:
         json.dump(coursesDict, fileOut, indent=4)
