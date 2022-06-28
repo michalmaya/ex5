@@ -4,15 +4,13 @@ import os
 
 
 def names_of_registered_students(input_json_path, course_name):
-    """
-    This function returns a list of the names of the students who registered for
-    the course with the name "course_name".
+    with open (input_json_path, 'r') as f:
+        tempDict = json.load(f)
+    return [tempDict["student_name"] for tempDict["student_name"] in tempDict if (for course in tempDict["registered_courses"]) is course_name]
 
-    :param input_json_path: Path of the students database json file.
-    :param course_name: The name of the course.
-    :return: List of the names of the students.
-    """
-    pass
+
+
+
 
 
 def enrollment_numbers(input_json_path, output_file_path):
