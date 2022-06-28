@@ -39,5 +39,9 @@ def courses_for_lecturers(json_directory_path, output_json_path):
                         course = temp_dict[item]["course_name"]
                         if course not in finalDict[lecturer]:
                             finalDict[lecturer] += [course]
+
     with open(output_json_path, 'w') as f:
-        json.dump(finalDict, f, indent=4)
+        f.write('{\n')
+        for key, value in finalDict.items():
+            f.write('    \"{0}\": {1},\n'.format(key, value))
+        f.write('}')
